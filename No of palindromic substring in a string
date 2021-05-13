@@ -1,0 +1,50 @@
+class Solution {
+public:
+  
+  
+  //INSPIRATION FROM LONGEST PALLINDROMIC SUBSTRING- EXTEND FROM CENTER
+  
+  
+  /*
+  The idea is that to check all length pallindromic substrings from all possible centers
+  
+  We'll have to check for odd length and even length substrings seperatelty.
+  */
+    int countSubstrings(string s) {
+      int n=s.size();
+      int ans =0;
+      
+      for(int i=0;i<n;++i){
+        
+        /*
+        for all pallindromic substrings of ODD length with center as 
+        i.
+        
+        */
+        int l=i,r=i;
+        while(l>=0 && r<n && s[l]==s[r]){
+         
+          ++ans;
+          --l;
+          ++r;
+          
+        }
+        /*
+        for all pallindromic substrings of even length with center as 
+        i.
+        
+        */
+        l=i;
+        r=i+1;
+        
+        while(l>=0 && r<n && s[l]==s[r]){
+          
+          ++ans;
+          --l;
+          ++r;
+        }
+      }
+      return ans;
+        
+    }
+};
