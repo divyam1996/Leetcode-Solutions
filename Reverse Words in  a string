@@ -1,0 +1,31 @@
+class Solution {
+public:
+    string reverseWords(string s) {
+        int n=s.length();
+        int i=0;
+        while(s[i]==' '){
+            i++;
+        }
+        vector<string>v;
+        for(int j=i;j<s.length();j++){
+            string temp;
+            while(s[j]!=' '&&j<s.length()){
+                temp+=s[j];
+                j++;
+            }
+            if(temp!=""){
+                v.push_back(temp);
+            }
+        }
+        string abc;
+        for(int k=v.size()-1;k>=0;k--){
+            abc+=v[k];
+            if(k!=0){
+                abc+=" ";
+            }
+        }
+        return abc;
+        
+        
+    }
+};
