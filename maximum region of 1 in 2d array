@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int checkMax(vector<vector<int>> &grid,int i,int j,int m,int n)
+    {
+        if(i<0||j<0||i>m-1||j>n-1||grid[i][j]!=1)
+            return 0;
+        grid[i][j] = 0;
+        return 1+checkMax(grid,i-1,j,m,n)+checkMax(grid,i+1,j,m,n)+checkMax(grid,i,j-1,m,n)+checkMax(grid,i,j+1,m,n);
+    }
+    
+    int maxAreaOfIsland(vector<vector<int>>& grid)
+    {
+        int mx = 0;
+        int m,n;
+        m = grid.size();
+        n = grid[0].size();
+        //cout<<m<<" "<<n;
+        
+        for(int i=0;i<m;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                mx = max(mx,checkMax(grid,i,j,m,n));
+                //cout<<i<<" "<<j<<" "<<mx<<endl;
+            }
+        }
+        return mx;
+    }
+};
