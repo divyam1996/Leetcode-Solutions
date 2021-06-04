@@ -1,0 +1,71 @@
+class Solution {
+public:
+    int openLock(vector<string>& a, string target) {
+        int i;
+       
+        unordered_set<string>s;
+        for(i=0;i<a.size();i++)
+        s.insert(a[i]);
+       
+        if(s.find("0000")!=s.end())
+        return -1;
+       
+        if(s.find(target)!=s.end())
+            return -1;
+       
+        if(target=="0000")
+        return 0;
+       
+        string str="0000";
+        unordered_set<string>visited;
+        queue<pair<string,int>>q;
+        q.push({str,0});
+        visited.insert(str);
+       
+        while(!q.empty())
+        {
+           
+            pair<string,int>p=q.front();
+            q.pop();
+           
+            str=p.first;
+            int hd=p.second;
+           
+            for(i=0;i<4;i++)
+            {
+                int x=str[i]-'0';
+                string temp1=str,temp2=str;
+                int x1=(x+1)%10;
+                int x2=(x-1+10)%10;
+               
+                temp1[i]=(char)(x1+'0');
+                temp2[i]=(char)(x2+'0');
+               
+                if(temp1==target || temp2==target)
+                return hd+1;
+               
+                if(s.find(temp1)==s.end())
+                {
+                    if(visited.find(temp1)==visited.end())
+                    {
+                        q.push({temp1,hd+1});
+                        visited.insert(temp1);
+                    }
+                }
+               
+                if(s.find(temp2)==s.end())
+                {
+                    if(visited.find(temp2)==visited.end())
+                    {
+                        q.push({temp2,hd+1});
+                        visited.insert(temp2);
+                    }
+                }
+               
+            }
+           
+        }
+       
+        return -1;
+    }
+};
