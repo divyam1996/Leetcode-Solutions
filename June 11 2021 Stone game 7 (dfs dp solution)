@@ -1,0 +1,26 @@
+class Solution {
+public:
+    
+    int dfs(vector<int> &stones, int i, int j, int sum){
+        
+        //Because after removing you will not get anything because ntohing is left in the array.
+        if(i==j) return 0;
+        
+        if(dp[i][j]) return dp[i][j];
+        // dp[i][j] -> stores the difference
+        int left_removed = sum - stones[i] - dfs(stones, i+1, j, sum - stones[i]);
+        int right_removed = sum - stones[j] - dfs(stones, i, j-1, sum - stones[j]);
+        return dp[i][j] = max(left_removed, right_removed);
+    }
+    
+    int dp[1001][1001] = {};
+    int stoneGameVII(vector<int>& stones) {
+       int n = stones.size();
+        int sum = 0;
+        for(int i=0;i<n;i++){
+            sum += stones[i];
+        }
+        
+        return dfs(stones, 0,n-1,sum);
+    }
+};
