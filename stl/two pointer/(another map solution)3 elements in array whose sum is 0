@@ -1,0 +1,36 @@
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        unordered_map<int, int> mp;
+        sort(nums.begin(), nums.end());
+        for(int i=0; i<nums.size(); i++)
+        {
+            mp[nums[i]] = i;
+        }
+        int n = nums.size();
+        vector<vector<int>> finans;
+        
+        int i=0, j=1;
+        while(i < nums.size())
+        {
+            if(nums[i]>0)   break;
+            
+            while(j < nums.size())
+            {
+                int sum = nums[i]+nums[j];
+                if(mp.find(-sum) != mp.end() && mp[-sum] > j)  
+                {
+                    vector<int> preans;
+                    preans.push_back(nums[i]);
+                    preans.push_back(nums[j]);
+                    preans.push_back(-sum);
+                    finans.push_back(preans);
+                }
+                j=mp[nums[j]]+1;  //to avoid traversal over duplicate, since vector is sorted
+            }
+            i=mp[nums[i]]+1; 
+            j=i+1;
+        }
+        return finans;
+    }
+};
