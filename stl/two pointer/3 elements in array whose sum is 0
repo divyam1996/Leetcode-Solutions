@@ -1,0 +1,28 @@
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        int n=nums.size();
+        
+        set<vector<int>> res;
+        for(int k=0;k<n-2;k++){ 
+            int sum=-nums[k];
+            int i=k+1,j=n-1;
+            while(i<j){
+                int tmp=nums[i]+nums[j];
+                if(tmp==sum){
+                    vector<int> v{nums[k],nums[i],nums[j]};
+                    sort(v.begin(),v.end());
+                    res.insert(v);
+                    i++;j--;
+                }
+                else if(tmp>sum)j--;
+                else i++;
+            }
+            
+        }
+        vector<vector<int>> ans;
+        ans.insert(ans.begin(),res.begin(),res.end());
+        return ans;;
+    }
+};
