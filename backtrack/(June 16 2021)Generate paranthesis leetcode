@@ -1,0 +1,36 @@
+class Solution {
+public:
+    void parentheses(int n,int open,int close,string &v,vector<string> &res)
+    {
+        if(open>n || close>n)
+        return;
+        if(close==n)
+        {
+            res.push_back(v);
+            return;
+        }
+        if(open<n)
+        {
+            v.push_back('(');
+            parentheses(n,open+1,close,v,res);
+            v.pop_back();
+        }
+        if(close<open)
+        {
+            v.push_back(')');
+            parentheses(n,open,close+1,v,res);
+            v.pop_back();
+        }
+        return;
+    }
+    vector<string> generateParenthesis(int n)
+    {
+       vector<string>res;
+        if(n==0)
+        return res;
+        string v;
+       
+        parentheses(n,0,0,v,res);
+        return res;
+    }
+};
