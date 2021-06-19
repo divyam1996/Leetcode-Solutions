@@ -1,0 +1,45 @@
+class Solution {
+public:
+    void f(vector<int> &candidates,int start,int end ,int target, vector<int> &contri, vector<vector<int>> &res){
+    if(target==0){
+        //sort(contri.begin(),contri.end());
+        if(find(res.begin(),res.end(),contri)==res.end()){
+          res.push_back(contri);
+        }
+        return;
+    }
+    
+    if(start>end || target<0)
+        return ;
+    
+    f(candidates,start+1,end,target,contri,res);
+    
+    contri.push_back(candidates[start]);
+        
+    
+    f(candidates,start+1,end,target-candidates[start],contri,res);
+    contri.pop_back();
+    
+}
+
+
+
+vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+    vector<int> contri;
+    vector<vector<int>> res;
+    vector<vector<int>> res1;
+    
+    f(candidates,0,candidates.size()-1, target, contri, res); 
+    sort(res.begin(),res.end());
+    res.erase(unique(res.begin(),res.end()),res.end());
+    
+    sort(contri.begin(),contri.end());
+    set<vector<int>>ss;
+    for(int i=0;i<res.size();i++){
+    sort(res[i].begin(),res[i].end());
+    ss.insert(res[i]);}
+    res1.insert(res1.begin(),ss.begin(),ss.end());
+    return res1;
+    
+}
+};
