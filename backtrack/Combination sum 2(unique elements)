@@ -30,10 +30,10 @@ vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
     vector<vector<int>> res1;
     
     f(candidates,0,candidates.size()-1, target, contri, res); 
-    sort(res.begin(),res.end());
-    res.erase(unique(res.begin(),res.end()),res.end());
+   // sort(res.begin(),res.end());
+   // res.erase(unique(res.begin(),res.end()),res.end());
     
-    sort(contri.begin(),contri.end());
+   // sort(contri.begin(),contri.end());
     set<vector<int>>ss;
     for(int i=0;i<res.size();i++){
     sort(res[i].begin(),res[i].end());
