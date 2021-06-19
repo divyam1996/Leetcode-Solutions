@@ -1,0 +1,31 @@
+class Solution {
+public:
+    void f(vector<int> &candidates,int start,int end ,int target, vector<int> &contri, vector<vector<int>> &res){
+    if(target==0)
+    {
+        res.push_back(contri);
+        return;
+    }
+    
+    if(start>end || target<0)
+        return ;
+    
+    f(candidates,start+1,end,target,contri,res);
+    
+    contri.push_back(candidates[start]);
+    
+    f(candidates,start,end,target-candidates[start],contri,res);
+    contri.pop_back();
+}
+
+
+
+vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+    vector<int> contri;
+    vector<vector<int>> res;
+    
+    f(candidates,0,candidates.size()-1, target, contri, res); 
+    
+    return res;
+}
+};
