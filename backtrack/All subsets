@@ -18,3 +18,42 @@ public:
 	return;
 }
 };
+
+
+
+/////////////2nd sol
+class Solution {
+public:
+    
+    void findSubsets(int idx, vector<int>& nums, vector<vector<int>>& ans, vector<int>& ds) {
+	// We keep on recursing till the time we go past the last position on nums. Then we know we have achived a subset.
+	// Hence  we push it into the ans vector.
+        if(idx == nums.size()){
+            ans.push_back(ds);
+            return;
+        }
+		
+		// Now if we are picking an element, we need to push it into our vector
+		
+        ds.push_back(nums[idx]);
+		
+		// We call for the next index as we have already picked this one
+		
+        findSubsets(idx+1, nums, ans, ds);
+		
+		// Now it is very important that we pop it back when we recursively go back up the recursion tree.
+		
+        ds.pop_back();
+		
+		// Else we have an option of not picking the element. So we just move our index without including the element in our vector.
+        
+        findSubsets(idx+1, nums, ans, ds);
+    }
+    
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>> ans;
+        vector<int> ds;
+        findSubsets(0, nums, ans, ds);
+        return ans;
+    }
+};
