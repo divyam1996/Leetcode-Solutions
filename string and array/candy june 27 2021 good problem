@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int candy(vector<int>& ratings) {
+        vector<int> num(ratings.size(),1);
+ //  if only one element then just return the size
+        
+        if(ratings.size()<=1)
+            return ratings.size();
+        
+       /* The first loop makes sure children with a higher rating get more candy than its left neighbor 
+       */   
+        
+        for(int i=0;i<ratings.size()-1;i++)
+        {
+            if(ratings[i]<ratings[i+1])
+                num[i+1]=num[i]+1;
+        }
+        
+      /*  the second loop makes sure children with a higher rating get more candy than its right neighbor
+      to increase */
+        
+        for(int i=ratings.size()-1;i>0;i--)
+        {
+            if(ratings[i-1]>ratings[i])
+                // make sure that the increase in candies is minimum
+                num[i-1]=max(num[i]+1,num[i-1]); 
+        }
+        /*   sum the array formed and return it  
+        */
+        return accumulate(num.begin(),num.end(),0);
+    }
+};
