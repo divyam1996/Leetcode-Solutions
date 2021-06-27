@@ -1,0 +1,27 @@
+class Solution {
+    vector<vector<int>> res;
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        backtrack(0, nums);
+        return res;
+    }
+    private:
+    void backtrack(int head, vector<int>& nums) {
+        if(head == nums.size()-1) {
+            res.push_back(nums);
+           // return;
+        }
+        
+        for(int i=head; i < nums.size(); i++) {
+            swap(nums, head, i);
+            backtrack(head+1, nums);
+            swap(nums, i, head);
+        }
+    }
+
+    void swap(vector<int>& nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+};
