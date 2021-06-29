@@ -1,0 +1,35 @@
+class Solution {
+    vector<vector<int>> res;
+public:
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        backtrack(0, nums);
+        return res;
+    }
+private:
+    void backtrack(int head, vector<int>& nums) {
+        if(head == nums.size()-1) {
+            // nothing we can swap, reach the leaf
+            res.push_back(nums);
+            return;
+        }
+        
+        unordered_set<int> seen;
+        for(int i=head; i < nums.size(); i++) {
+            // swap num[head] with num[i];
+            if(seen.find(nums[i]) == seen.end()) {
+                seen.insert(nums[i]);
+                swap(nums, head, i);
+                // grow the substring when num[head] is fixed
+                backtrack(head+1, nums);
+                // swap back num[head] with num[i]; for next position i+1 to swap
+                swap(nums, i, head);
+            }
+        }
+    }
+
+    void swap(vector<int>& nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+};
