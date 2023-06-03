@@ -1,0 +1,14 @@
+var obj={
+name:"Divyam",
+age:"26"
+}
+var z;
+for(let key in obj){
+if(obj[key]==='name'){
+    z+=obj[key];
+  }
+}
+Object.keys(obj)
+// [name,age]
+Object.values(obj)
+//[Divyam,26]
