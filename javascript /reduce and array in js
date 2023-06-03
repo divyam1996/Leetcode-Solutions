@@ -1,0 +1,46 @@
+const numbers = [1, 2, 3, 4, 5, 6];
+
+function sum_reducer(accumulator, currentValue) {
+  return accumulator + currentValue;
+}
+
+let sum = numbers.reduce(sum_reducer,10);
+console.log(sum); // 21
+
+// using arrow function
+let summation = numbers.reduce(
+  (accumulator, currentValue) => accumulator + currentValue
+);
+console.log(summation); // 21
+
+
+
+
+const student = [{
+  name: 'John',
+  subjects: ['English', 'Physics']
+  },
+  {
+  name: 'Harold',
+  subjects: ['Mathematics', 'Physics']
+  }, {
+  name: 'Johnson',
+  subjects: ['Chemistry', 'English']
+  }];
+  
+  const a=[];
+  for(let i=0;i<student.length;i++){
+    
+      for(let j=0;j<student[i].subjects.length;j++){
+        //console.log(a);
+        if(!a.includes(student[i].subjects[j])){
+          a.push(student[i].subjects[j])
+        }
+      }
+  }
+  a.push('bcd')
+  a.push(['999'])
+  console.log(a);
+
+console.log(typeof(function(){}));
+
