@@ -1,0 +1,31 @@
+//1------callback in javascript
+
+function modifyArray(arr, callback) {
+    // do something to arr here
+    arr.push(100);
+    // then execute the callback function that was passed
+    callback();
+  }
+  
+  var arr = [1, 2, 3, 4, 5];
+  
+  modifyArray(arr, function() {
+    console.log("array has been modified", arr);
+  });
+
+  //2----given a string reverse each word in sentence
+
+  var string = "Welcome to this Javascript Guide!";
+
+  // Output becomes !ediuG tpircsavaJ siht ot emocleW
+  var reverseEntireSentence = reverseBySeparator(string, "");
+  console.log("22",reverseEntireSentence)
+  // Output becomes emocleW ot siht tpircsavaJ !ediuG
+  var reverseEachWord = reverseBySeparator(reverseEntireSentence, " ");
+  console.log("25",reverseEachWord)
+  
+  function reverseBySeparator(string, separator) {
+    return string.split(separator).reverse().join(separator);
+  }
+
+  
