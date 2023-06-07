@@ -1,0 +1,71 @@
+// Online Javascript Editor for free
+// Write, Edit and Run your Javascript code using JS Online Compiler
+
+console.log("Welcome to Programiz!");
+const cars = [ 
+    { 
+        'make': 'audi', 
+        'model': 'r8', 
+        'year': '2012' 
+    }, { 
+        'make': 'audi', 
+        'model': 'rs5', 
+        'year': '2013' 
+    }, {
+        'make': 'ford', 
+        'model': 'mustang', 
+        'year': '2012' 
+    } 
+]; 
+
+Output:  
+const cars = {​​ 
+    'audi': [ 
+        {​​ 
+            'model': 'r8', 
+            'year': '2012' 
+        }​​, {​​ 
+            'model': 'rs5', 
+            'year': '2013' 
+        }​​, 
+    ], 
+ 
+    'ford': [ 
+        {​​ 
+            'model': 'mustang', 
+            'year': '2012' 
+        }​​  
+],   
+}​​ 
+
+
+
+// let result=cars.reduce((acc,curr)=>{
+//     return [.acc,...curr.make]
+    
+// })
+//console.log(result)
+// var obj={};
+// for(let i=0;i<cars.length;i++){
+//     var a=[];
+//     var obj1=cars[i];
+//     var s=cars[i].make;
+//     // for (const key in obj1){
+//     //   a.push()
+    
+//     }
+    
+    
+// }
+
+// const result = cars.reduce((h, { model, year, make }) => {
+//   return Object.assign(h, { [make]: (h[make] || []).concat({ model, year }) });
+// }, {});
+let result;
+result = cars.reduce(function (r, a) {
+        r[a.make] = r[a.make] || [];
+        r[a.make].push(a);
+        return r;
+    }, Object.create(null));
+console.log(result)
+
