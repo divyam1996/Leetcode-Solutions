@@ -28,4 +28,15 @@ function modifyArray(arr, callback) {
     return string.split(separator).reverse().join(separator);
   }
 
+
+let a={
+    name:"john",
+    age:24,
+    salary:176237467623
+}
+console.log(Object.entries(a));    ////[['name','john'],['age','24'],['salary','176']]
+const {salary,...b}=a;
+console.log(b,salary);
+
+
   
