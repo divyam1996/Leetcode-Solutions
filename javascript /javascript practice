@@ -38,5 +38,12 @@ console.log(Object.entries(a));    ////[['name','john'],['age','24'],['salary','
 const {salary,...b}=a;
 console.log(b,salary);
 
+var a=['one','two','three'];
+console.log(a.shift().split('n'));      //[ 'o', 'e' ]
+console.log(a);                         //[ 'two', 'three' ]
+console.log(a.shift().slice(1));```````/// wo
+a[50]=1
+console.log(a.length);                  //51
+
 
   
