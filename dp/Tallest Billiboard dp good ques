@@ -1,3 +1,5 @@
+//sol https://leetcode.com/problems/tallest-billboard/discuss/3675528/Brute-force-greater-Optimised-C%2B%2B-Solution-using-DP
+
 class Solution {
 public:
     int dp[20][10001];
