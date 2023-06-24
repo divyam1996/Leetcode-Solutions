@@ -1,0 +1,15 @@
+const compose = (...functions) => {
+    return (x) => {
+        //console.log(functions);
+       return functions.reduceRight((acc, fn) => {
+        console.log(acc)
+        return fn(acc)}, x)
+        };
+};
+const user = {name: 'Gianmarco', password: 1234}
+const getUserName = (user) => user.name
+const upperCase = (string) => string.toUpperCase()
+const firstFour= (string) => string.substring(0,4)
+console.log(compose (firstFour, upperCase, getUserName) (user));
+
+const compose1 = (...functions) => x => functions.reduceRight((acc, fn) => fn(acc), x);
