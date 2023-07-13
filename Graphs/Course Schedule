@@ -29,3 +29,22 @@ public:
         return true;
     }
 };
+
+
+Explaination
+The code checks if a directed graph represented by a list of prerequisites can be completed without any cycles.
+It uses a depth-first search (DFS) approach to detect cycles in the graph.
+The iscycle function takes the adjacency list representation of the graph, an array visited to track visited nodes, and the current node i.
+If the current node i is already visited (visited[i] == 1), it returns true to indicate a cycle.
+If the current node is not visited, it marks it as visited (visited[i] = 1) and recursively checks its neighbors.
+If any of the neighbors result in a cycle (i.e., iscycle returns true), it returns true to indicate the presence of a cycle.
+After checking all neighbors, the current node is marked as fully visited (visited[i] = 2) to indicate it has been fully explored.
+The canFinish function creates the adjacency list based on the prerequisites provided.
+It initializes the visited array and iterates through each node in the graph.
+For each node, it calls the iscycle function to check if there is a cycle starting from that node.
+If any cycle is detected, the function returns false to indicate that the prerequisites cannot be completed without cycles.
+If no cycles are found, the function returns true, indicating that the prerequisites can be completed without cycles.
+Complexity
+Time complexity: O(n+m), adjlist takes O(m) and traversing n nodes takes O(m).
+
+Space complexity: O(n+m), adjlist takes O(m) and visited vector takes O(n)
