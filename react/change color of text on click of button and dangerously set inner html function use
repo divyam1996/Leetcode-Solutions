@@ -1,0 +1,41 @@
+//app.tsx
+import * as React from 'react';
+import Stringtojsx from './Stringtojsx';
+import './style.css';
+
+export default function App() {
+  const htmlText = '<b>Hello HTML</b> <p>This is a paragraph</p>'
+ const [clicked,setclicked]=React.useState(false); 
+ const [color,setcolor]=React.useState('green');
+ 
+  
+  return (
+   
+    <div>
+      <div id="text" style={{color:clicked?'red':color}}>
+        <h1>React sample app!</h1> 
+        <p>Some test content</p> 
+      </div>
+      <Stringtojsx htmlText={htmlText} setclicked={setclicked} />
+    </div>
+  );
+}
+
+//jsxtoreact.txs
+
+import * as React from 'react';
+import './style.css';
+
+export default function Stringtojsx({htmlText,setclicked}) {
+  function handleclick(){
+      setclicked(true)
+  }
+  return (
+
+   
+    <>
+      <div dangerouslySetInnerHTML={{__html:htmlText}}></div>
+      <button onClick={handleclick}>click me</button>
+    </>
+  );
+}
