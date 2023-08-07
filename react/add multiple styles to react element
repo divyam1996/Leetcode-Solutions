@@ -1,0 +1,23 @@
+import * as React from 'react';
+import Stringtojsx from './Stringtojsx';
+import './style.css';
+
+export default function App() {
+  const htmlText = '<b>Hello HTML</b> <p>This is a paragraph</p>'
+ const [clicked,setclicked]=React.useState(false); 
+ const [color,setcolor]=React.useState('green');
+ const classs={
+   backgroundColor:'#00FF00'
+ }
+  
+  return (
+   
+    <div>
+      <div id="text" style={Object.assign({color:clicked?'red':color},classs)}>
+        <h1>React sample app!</h1> 
+        <p>Some test content</p> 
+      </div>
+      <Stringtojsx htmlText={htmlText} setclicked={setclicked} />
+    </div>
+  );
+}
