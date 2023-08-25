@@ -1,0 +1,31 @@
+class Solution {
+public:
+    bool isInterleave(string s1, string s2, string s3) {
+        int n1=s1.size(), n2=s2.size(), n3=s3.size();
+        
+        //Check if the total length of s1 and s2 is equal to the length of s3
+        if (n1+n2!=n3) return 0;
+        
+        // Initialize a 2D DP array
+        vector<vector<int>> dp(n1+1, vector<int>(n2+1, 0));
+        
+        // Set the base case: the last cell in the DP array is initialized as 1
+        dp[n1][n2] = 1;
+        
+        //Iterate over the DP array from bottom-right to top-left
+        for (int i=n1; i >= 0; i--) {
+            for (int j=n2; j >= 0; j--) {
+                //If there are characters left in s1 and the character matches s3
+                if (i<n1 && s1[i]==s3[i+j]) 
+                    dp[i][j]=dp[i][j] || dp[i+1][j]; // Take value from the cell below
+                
+                //If there are characters left in s2 and the character matches s3
+                if (j<n2 && s2[j]==s3[i+j]) 
+                    dp[i][j]=dp[i][j] || dp[i][j+1]; //Take value from the cell on the right
+            }
+        }  
+
+        // Return true if the top-left cell of the DP array is 1 
+        return dp[0][0] == 1;
+    }
+};
