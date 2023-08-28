@@ -1,0 +1,23 @@
+import React, { useState } from 'react'
+
+const App = () => {
+  const [todos, setTodos] = useState([])
+  const [currentTodo, setCurrentTodo] = useState('')
+
+  const addTodo = () => {
+    setTodos([...todos, currentTodo])
+    setCurrentTodo('')
+  }
+
+  return (
+    <div>
+      <input data-testid="input-id" type="text" value={currentTodo} onChange={e => setCurrentTodo(e.target.value)} />
+      <button data-testid="button-id" onClick={addTodo}>Add a todo</button>
+      <ul data-testid="ul-id">
+        {todos.map(el => <li>{el}</li>)}
+      </ul>
+    </div>
+  )
+}
+
+export default App
