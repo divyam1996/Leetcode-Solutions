@@ -1,0 +1,30 @@
+class Solution {
+public:
+    //knapsack pattern bass ek cheez hai isme ki cost will be 1+time[i]
+    //one of the best questions
+    int dp[505][505];
+    long long int solve(vector<int>& cost, vector<int>& time, int i, int n){
+        if(n<=0){
+            //all the walls have been covered
+            return 0;
+        }
+        if(i<0){
+            return INT_MAX;
+        }
+        if(dp[i][n]!=-1){
+            return dp[i][n];
+        }
+        long long int ch1=solve(cost,time,i-1,n);
+        long long int ch2=cost[i]+solve(cost,time,i-1,n-1-time[i]);
+        return dp[i][n]=min(ch1,ch2);
+    }
+
+
+
+    int paintWalls(vector<int>& cost, vector<int>& time) {
+        //same question of media net hai yeh
+        memset(dp,-1,sizeof(dp));
+        int n=cost.size();
+        return solve(cost,time,n-1,n);
+    }
+};
