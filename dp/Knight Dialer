@@ -1,0 +1,32 @@
+class Solution {
+private:
+    const int mod=int(1e9+7);
+    vector<vector<int>> adj={
+        {4,6},{6,8},{7,9},{4,8},{3,9,0},{},{0,1,7},{2,6},{1,3},{2,4}
+    };
+    int dp[5000][10];
+public:
+    int knightDialer(int n) {
+        memset(dp,0,sizeof(dp));
+        //base case
+        for(int num=0;num<10;++num) dp[0][num]=1;
+
+        for(int rem=1;rem<n;++rem) {
+            for(int num=0;num<10;++num) {
+                int ans=0;
+                for(auto j :adj[num]) {
+                    ans+=dp[rem-1][j];
+                    ans%=mod;
+                }
+                dp[rem][num]=ans;
+            }
+        }
+
+        int res=0;
+        for(int num=0;num<10;++num) {
+            res+=dp[n-1][num];
+            res%=mod;
+        }
+        return res;
+    }
+};
