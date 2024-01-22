@@ -1,0 +1,22 @@
+  var arr=[1,23,4,5,6];
+  arr.push(88);
+  console.log(arr);
+  var z=arr.slice(1,4);
+  console.log(z);
+  var zz=arr.slice(4);
+  console.log(zz);
+  var zzz=arr.splice(2,4,22,33)
+  console.log(zzz,arr)
+
+  var str="my name is divyam";
+  var sub=str.substr(4);
+  console.log(sub);
+
+  console.log(str.includes("ee"));
+  console.log(str.slice(1,4));
+  //console.log(str.splice(1,5))  splice aur contains function nhi hote 
+
+  const greaterthan20=arr.filter((no)=> no>20);
+  console.log(greaterthan20,arr);
+  const reduce=arr.reduce((a,b)=>a+b,10)
+  console.log(reduce);
