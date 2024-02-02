@@ -1,0 +1,50 @@
+import { useEffect } from "react";
+import { useState } from "react";
+import "./styles.css";
+
+export default function App() {
+  const lights = [
+    {
+      color: "red",
+      wait: "5000",
+      baad: "yellow",
+    },
+    {
+      color: "yellow",
+      wait: "3000",
+      baad: "green",
+    },
+    {
+      color: "green",
+      wait: "2000",
+      baad: "red",
+    },
+  ];
+  const [active, setActive] = useState("red");
+  const present = lights.find((l) => l.color === active);
+  useEffect(() => {
+    console.log("99", present);
+    const timer = setTimeout(() => {
+      setActive(present.baad);
+    }, present.wait);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [active, present]);
+  return (
+    <div className="App">
+      <h1>Hello CodeSandbokkkkkx</h1>
+      {lights.map((light) => {
+        return (
+          <div
+            style={{
+              width: "50px",
+              height: "100px",
+              backgroundColor: active === light.color ? light.color : "white",
+            }}
+          />
+        );
+      })}
+    </div>
+  );
+}
