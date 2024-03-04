@@ -1,0 +1,46 @@
+onsole.log("Try programiz.pro");
+
+
+let string1="i am divyam";
+let string2="i ma mayvid";
+
+var strarray=string1.split(' ').map((word)=>{
+    return word.split("").reverse().join("")
+    
+})
+console.log(strarray);
+var output='';
+for (var i=0;i<strarray.length;i++){
+    if(i===strarray.length-1){
+       output+=strarray[i]
+    }
+    else{
+    output+=strarray[i]+" ";
+    }
+}
+console.log(output)
+
+function isSubsequence(s, t) {
+    let sIndex = 0;
+    let tIndex = 0;
+
+    while (sIndex < s.length && tIndex < t.length) {
+        if (s[sIndex] === t[tIndex]) {
+            sIndex++;
+        }
+        tIndex++;
+    }
+
+    return sIndex === s.length;
+}
+
+// Example usage:
+const s = "abc";
+const t = "ahbgdc";
+
+if (isSubsequence(s, t)) {
+    console.log("All characters of 's' are present in 't' in the same order.");
+} else {
+    console.log("Not all characters of 's' are present in 't' in the same order.");
+}
+
